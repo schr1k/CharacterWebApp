@@ -59,6 +59,7 @@
 <script>
     function onClick(message) {
         tg.sendData(message);
+        tg.close();
     }
 
     let tg = window.Telegram.WebApp;
