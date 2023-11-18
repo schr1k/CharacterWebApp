@@ -328,7 +328,7 @@
             right: 0;
             top: 0;
             bottom: 0;
-            display: flex;
+            display: grid;
             justify-content: center;
             align-items: center;
             gap: 40px;
@@ -336,18 +336,23 @@
 
         .character {
             font-size: 30px;
+            width: 50vw;
         }
     </style>
 </head>
 
 <body>
 <div class="characters">
-    <p class="character">Mario</p>
-    <p class="character">Albert Einstein</p>
+    <button class="character" onclick=onClick("Mario")>Mario</button>
+    <button class="character" onclick=onClick("Albert")>Albert Einstein</button>
 </div>
 
 <script type="application/javascript">
-
+    function onClick(character) {
+        CharacterApp.apiRequest('sendMessage', {
+                msg: character,
+        })
+    }
     function setThemeClass() {
         document.documentElement.className = Telegram.WebApp.colorScheme;
     }
@@ -385,7 +390,6 @@
             }
         },
 
-        // actions
         sendMessage(msg_id, with_webview) {
             if (!CharacterApp.initDataUnsafe.query_id) {
                 alert('WebViewQueryId not defined');
