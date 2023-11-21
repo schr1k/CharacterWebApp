@@ -18,48 +18,62 @@
             color-scheme: var(--tg-color-scheme);
         }
 
-        button {
-            display: block;
-            width: 100%;
-            font-size: 14px;
-            margin: 15px 0;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--tg-theme-button-color, #50a8eb);
-            color: var(--tg-theme-button-text-color, #ffffff);
-            cursor: pointer;
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .characters {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            display: grid;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
+            margin-top: 5vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
 
         .character {
-            font-size: 30px;
-            width: 50vw;
+            font-size: 5vh;
+            color: #00b2ff;
+        }
+
+        img {
+            border-radius: 13%;
         }
     </style>
 </head>
 
 <body>
 <div class="characters">
-    <button class="character" onclick=onClick("Mario")>Mario</button>
-    <button class="character" onclick=onClick("Albert")>Albert Einstein</button>
+    <div class="card">
+        <img src="./public/mario.png" alt="Mario" >
+        <p class="character"><b>Mario</b><br/>Character</p>
+    </div>
+    <div class="card">
+        <img src="./public/albert.png" alt="Albert Einstein">
+        <p class="character"><b>Albert Einstein</b><br/>Scientist</p>
+    </div>
+
+
 </div>
 
 <script>
+    let cards = document.getElementsByClassName("card");
+    let cardsText = Array.from(cards).map((i) => i.children[1].innerHTML)
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", function () {
+            onClick(cardsText[i]);
+        });
+    }
     function onClick(message) {
         tg.sendData(message);
         tg.close();
+        alert('sbhbsahskjbnsb')
     }
 
     let tg = window.Telegram.WebApp;
