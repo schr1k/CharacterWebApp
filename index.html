@@ -12,7 +12,7 @@
             font-family: sans-serif;
             background-color: var(--bg-color);
             color: var(--tg-theme-text-color, #222);
-            font-size: 14px;
+            font-size: 40px;
             margin: 0;
             padding: 0;
             color-scheme: var(--tg-color-scheme);
@@ -29,22 +29,27 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10vh
         }
 
         .card {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            width: 70%;
+            width: 60%;
+            margin-left: 5vw;
         }
 
         .character {
-            font-size: 5vh;
             color: #00b2ff;
         }
 
         img {
             border-radius: 13%;
+        }
+
+        p {
+            text-align: center;
         }
     </style>
 </head>
@@ -52,12 +57,12 @@
 <body>
 <div class="characters">
     <div class="card">
-        <img src="./public/mario.png" alt="Mario" >
-        <p class="character"><b>Mario</b><br/>Character</p>
+        <img src="./public/mario.png" alt="Mario" id="Mario">
+        <p class="character"><b>Марио</b><br/>Персонаж</p>
     </div>
     <div class="card">
-        <img src="./public/albert.png" alt="Albert Einstein">
-        <p class="character"><b>Albert Einstein</b><br/>Scientist</p>
+        <img src="./public/albert.png" alt="Albert Einstein" id="Albert">
+        <p class="character"><b>Альберт Эйнштейн</b><br/>Физик-теоретик</p>
     </div>
 
 
@@ -65,7 +70,7 @@
 
 <script>
     let cards = document.getElementsByClassName("card");
-    let cardsText = Array.from(cards).map((i) => i.children[1].innerHTML)
+    let cardsText = Array.from(cards).map((i) => i.children[0].id)
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function () {
             onClick(cardsText[i]);
@@ -74,7 +79,6 @@
     function onClick(message) {
         tg.sendData(message);
         tg.close();
-        alert('sbhbsahskjbnsb')
     }
 
     let tg = window.Telegram.WebApp;
